@@ -36,6 +36,8 @@ paths:
               schema:
                 type: object
                 additionalProperties: false
+                required:
+                  - resultado                
                 properties:
                   resultado:
                     type: integer
