@@ -1,0 +1,46 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: API de Ejecución de Operaciones
+paths:
+  /ejecutar:
+    post:
+      summary: Ejecuta una operación matemática
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                operando1:
+                  type: integer
+                  description: Primer operando de la operación
+                operando2:
+                  type: integer
+                  description: Segundo operando de la operación
+                operador:
+                  type: string
+                  description: Operador de la operación
+                  enum: ['+', '-', '*']
+              required:
+                - operando1
+                - operando2
+                - operador
+      responses:
+        '200':
+          description: Operación ejecutada con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  resultado:
+                    type: integer
+                    description: Resultado de la operación
+        '400':
+          description: Solicitud incorrecta (por ejemplo, el body no cumple con la especificación)
+        '500':
+          description: Error interno del servidor
